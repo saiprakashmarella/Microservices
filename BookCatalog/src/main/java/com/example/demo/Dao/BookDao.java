@@ -23,21 +23,21 @@ public class BookDao {
 	
 	private static final Logger logg=LogManager.getLogger(BookDao.class.getName());
 	
-	public String saveBook(Book b) {
+	public Book saveBook(Book b) {
 		try {
 			logg.info("saving the details of book id:"+b.getId());
 			Book b1=repo.save(b);
 			if(b1!=null) {
 				logg.info("save successfull");
-				return "book name:"+b1.getName().toString()+" was saved successfully";
+				return b1;
 			}
 			else {
 				logg.error("error occured while saving the data");
-				return "Something went wrong.please try again later";
+				return null;
 			}
 		}catch(Exception e) {
 			logg.error("error occured while saving the data. Error is "+e.toString());
-			return e.toString();
+			return null;
 		}
 			
 	}

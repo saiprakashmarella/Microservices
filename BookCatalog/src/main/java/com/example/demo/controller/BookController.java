@@ -32,11 +32,11 @@ public class BookController {
 	}
 	
 	@PostMapping("/saveBook")
-	public String saveBook(@RequestBody Book b) {
+	public ResponseEntity<Book> saveBook(@RequestBody Book b) {
 		try {
-			return dao.saveBook(b); 
+			return ResponseEntity.ok().body(dao.saveBook(b)); 
 		}catch(Exception e) {
-			return e.toString();
+			return ResponseEntity.notFound().build();
 		}
 	}
 	@GetMapping("/getAllBooks")
